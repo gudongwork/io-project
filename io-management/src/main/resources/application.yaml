@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: io-management
+    # 配置mysql
+    datasource:
+      url: jdbc:mysql://localhost:3306/qkdb
+      username: root
+      password: 2217443192q
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    jackson:
+      date-format: yyyy-MM-dd HH:mm:ss
+      time-zone: Asia/Shanghai
+
+  # 配置mybatis输出sql语句
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 下划线命名法映射驼峰命名法
+    map-underscore-to-camel-case: true
+  # 修改映射文件的地址
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.itheima
+server:
+  port: 8080
+# 绝对路径
+dir:
+  init:
+    path: D:/1-test-dir
