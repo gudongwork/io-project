@@ -1,5 +1,6 @@
 package com.heima.controller;
 
+import com.heima.vo.Result;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,27 +27,33 @@ public class VideoController {
     private String initPath;
 
     @GetMapping("/default")
-    public String getDefaultPath() {
-        return initPath;
+    public Result getDefaultPath() {
+        Result result = new Result();
+        result.setData(initPath);
+        return result;
     }
     // 2. 获取文件夹里面所有视频文件名
 
     @GetMapping("/dirs")
-    public List<String> getDirs(String path) {
+    public Result getDirs(String path) {
+        Result result = new Result();
         if(path ==null || path.isEmpty()){
-            return ioUtil.getDirPaths(initPath);
+            result.setData(ioUtil.getDirPaths(initPath));
         }
         List<String> dirs = ioUtil.getDirPaths(path);
-        return dirs;
+        result.setData(dirs);
+        return result;
     }
 
     @GetMapping("/files")
-    public List<String> getFiles(String path) {
+    public Result getFiles(String path) {
+        Result result = new Result();
         if(path ==null || path.isEmpty()){
-            return ioUtil.getFileNames(initPath);
+            result.setData(ioUtil.getFileNames(initPath));
         }
         List<String> files = ioUtil.getFileNames(path);
-        return files;
+        result.setData(files);
+        return result;
     }
 
     // 流式播放接口，支持拖拽进度条 HTTP 206

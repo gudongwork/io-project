@@ -25,4 +25,4 @@ server:
 # 绝对路径
 dir:
   init:
-    path: D:/1-test-dir
+    path: D:\telegram
