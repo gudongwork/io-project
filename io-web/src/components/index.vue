@@ -92,9 +92,9 @@ onMounted(async () => {
 
 
   .nav {
-    width: 250px;
+    //width: 250px;
     margin-top: 20px;
-    min-width: 250px;
+    //min-width: 250px;
     max-width: 250px;
     height: 92vh;
     overflow-y: scroll; /* 垂直滚动；overflow:scroll 横竖都滚动 */
