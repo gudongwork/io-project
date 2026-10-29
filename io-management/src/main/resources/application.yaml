@@ -1,15 +1,48 @@
 spring:
-  application:
-    name: io-management
-    # 配置mysql
-    datasource:
-      url: jdbc:mysql://localhost:3306/qkdb
-      username: root
-      password: 2217443192q
-      driver-class-name: com.mysql.cj.jdbc.Driver
-    jackson:
-      date-format: yyyy-MM-dd HH:mm:ss
-      time-zone: Asia/Shanghai
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
+  # 文件上传
+  servlet:
+    multipart:
+      # 单个文件大小
+      max-file-size: 10MB
+      # 设置总上传的文件大小
+      max-request-size: 20MB
+  # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/xhzb?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: 1234
+  # redis 配置
+  data:
+    redis:
+      # 地址
+      host: localhost
+      # 端口，默认为6379
+      port: 6379
+      # 数据库索引
+      database: 0
+      # 密码
+      password: 123456
+      # 连接超时时间
+      timeout: 10s
+      jedis:
+        pool:
+          enabled: true
+  ai:
+    deepseek:
+      base-url: https://api.deepseek.com
+      api-key: ${DEEPSEEK_API_KEY}
+      chat:
+        options:
+          model: deepseek-flash
 
   # 配置mybatis输出sql语句
 mybatis:
@@ -22,8 +55,8 @@ mybatis:
   type-aliases-package: com.itheima
 server:
   address: 0.0.0.0
-  port: 8080
+  port: 8000
 # 绝对路径
 dir:
   init:
-    path: D:\telegram
+    path: E:\黑马5期

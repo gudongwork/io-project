@@ -8,6 +8,7 @@ const path = ref("");
 const dirList = ref([])
 const fileList = ref([])
 const videoRef = ref(null)
+const current_video_name = ref("");
 const videoSrc = ref("http://127.0.0.1:8080/api/video/stream?path=D:/1-test-dir/a/1.mp4")
 const type = ['mp4','webm','mov','ogg','ogv','3gp']
 const getPath = async () => {
@@ -30,6 +31,7 @@ const openDir = async (dirPath) =>{
 const openFile = async (fileName) =>{
   const suffix = fileName.split('.').pop();
   if(type.includes((suffix))){
+    current_video_name.value = fileName;
     const video = videoRef.value;
     video.src = baseURL + "/video/stream?path=" +path.value+"/" + fileName
     video.play().catch(err=>console.log('播放失败',err))
@@ -70,6 +72,7 @@ onMounted(async () => {
       </div>
     </div>
     <div class="content">
+      <div class="video-name">{{ current_video_name }}</div>
       <div class="video">
         <video
             ref="videoRef"
